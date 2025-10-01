@@ -66,6 +66,7 @@ feral_condicao = db.Table(
 
 
 # ----------------- Utensílios -----------------
+# Coloque o feral para receber o Utensílio id.
 class Utensilio(db.Model):
     __tablename__ = 'utensilio'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -126,11 +127,7 @@ class TracoFeral(db.Model):
     __tablename__ = 'traco_feral'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     feral_id = db.Column(db.Integer, db.ForeignKey('feral.id', ondelete='CASCADE'))
-    nome = db.Column(db.String(100), nullable=False)
-    custo = db.Column(db.String(50), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
-    habilidade_relacionada = db.Column(db.String(50), nullable=False)
-    estilo_relacionado = db.Column(db.String(50), nullable=False)
 
     feral = db.relationship('Feral', back_populates='tracos')
 
@@ -158,11 +155,7 @@ class TracoMonstro(db.Model):
     __tablename__ = 'traco_monstro'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     monstro_id = db.Column(db.Integer, db.ForeignKey('monstro.id', ondelete='CASCADE'))
-    nome = db.Column(db.String(100), nullable=False)
-    custo = db.Column(db.String(50), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
-    habilidade_relacionada = db.Column(db.String(50), nullable=False)
-    estilo_relacionado = db.Column(db.String(50), nullable=False)
 
     monstro = db.relationship('Monstro', back_populates='tracos')
 
