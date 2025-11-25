@@ -20,7 +20,7 @@
     </nav>
 
     <div class="form-viewport">
-        <form action="{{ url_for('create_feral') }}" method="post" class="form-container" id="formContainer">
+        <form action="{{ url_for('create_feral') }}" enctype="multipart/form-data" method="post" class="form-container" id="formContainer">
             <!-- Sessão 0: Estilo -->
             <section>
                 <div class="stats">
@@ -31,7 +31,7 @@
                     {% for estilo in ['LIGEIRO','PODEROSO','PRECISO','SAGAZ'] %}
                         <div>
                             <p>{{ estilo }}</p>
-                            <input type="number" name="{{ hab }}" min="1" required>
+                            <input type="number" name="{{ estilo }}" min="0" max="5" value="0" required>
                         </div>
                     {% endfor %}
                 </div>
@@ -48,7 +48,7 @@
                     {% for hab in ['AGARRAR','ATRAVESSAR','ESTUDAR','ARMAZENAR','BUSCAR','EXIBIR','ASSEGURAR','CHAMAR','GOLPEAR','ATIRAR','CURAR','MANUFATURAR'] %}
                         <div>
                             <p>{{ hab }}</p>
-                            <input type="number" name="{{ hab }}" min="1" required>
+                            <input type="number" name="{{ hab }}" min="0" max="5" value="0" required>
                         </div>
                     {% endfor %}
                 </div>

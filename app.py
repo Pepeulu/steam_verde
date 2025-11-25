@@ -110,7 +110,6 @@ def create_feral():
         if current_user.is_authenticated:
             nome = request.form['nome']
             titulo = request.form['titulo']
-            vigor_maximo = request.form['vigor_max']
             criacao = request.form['criacao']
             iniciacao = request.form['iniciacao']
             ambicao = request.form['ambicao']
@@ -132,8 +131,8 @@ def create_feral():
                 nome=nome,
                 titulo=titulo,
                 player=current_user.nome,
-                vigor_atual = vigor_maximo,
-                vigor_maximo = vigor_maximo,
+                vigor_atual = 20,
+                vigor_maximo = 20,
                 criacao=criacao,
                 iniciacao=iniciacao,
                 ambicao=ambicao,
@@ -152,7 +151,6 @@ def create_feral():
             # Utensílios
             nomes = request.form['utensilio_nome']
             alcances = request.form['utensilio_alcance']
-            quebrados = request.form['utensilio_quebrado']
             dur_max = request.form['utensilio_dur_max']
             ataques = request.form['utensilio_ataques']
 
@@ -160,7 +158,7 @@ def create_feral():
             utensilio = Utensilio(
                 nome=nomes,
                 alcance=alcances,
-                se_quebrado=quebrados,
+                se_quebrado=0, # MODIFIQUE ISSO AQUI,
                 durabilidade_atual=int(dur_max),
                 durabilidade_maxima=int(dur_max),
                 ataques=ataques
