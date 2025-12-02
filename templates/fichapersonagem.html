@@ -8,171 +8,161 @@
 {% endblock %}
 
 {% block content %}
-    <main>
-        <section class="personagem">
-            <img src="{{ url_for('static', filename='uploads/' + feral.imagem_url) }}" alt="Personagem">
-            <div class="personDesc">
-                <p>Nome: {{ feral.nome }}</p>
-                <p>Título: {{ feral.titulo }} </p>
-                <p>Interpretado por {{ feral.player }} </p>
-                <p>Condições:</p>
-
-                <div class="condicoes">
-                    {% if feral.condicoes != [] %}
-                        {% for feral_condicao in feral.condicoes %}
-                            <button onclick="ficarVerde(this)">{{ feral_condicao.nome }}</button>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
-        </section>
-
-        <div class="break">
-            <span class="linha"></span>
-            <p>Utensílio</p>
-            <span class="linha"></span>
+<main>
+    <div class="character-sheet">
+        <div class="header">
+            <h1>WILDERFEAST</h1>
         </div>
 
-        <section class="utensilio">
-            <p id="bule">{{ feral.utensilios[0].nome }}</p>
-
-            <div class="descContainer">
-                <p class="descTitulo">Informações:</p>
-                <p>Alcance: {{ feral.utensilios[0].alcance }}</p>
-                <p>Se quebrado: Alcance 1 (Golpear). Essa Parte dá metade do dano.</p>
-                <p>Durabilidade:</p>
-                <span id="durabilidade" class="center">{{ feral.utensilios[0].durabilidade_atual }} / {{ feral.utensilios[0].durabilidade_maxima }}</span>
+        <div class="top-section">
+            <div class="field">
+                <label>NOME</label>
+                <input type="text">
             </div>
-
-            <div class="descContainer">
-                <p class="descTitulo">Ataques:</p>
-                {% for ataque in feral.utensilios %}
-                    <p>{{ ataque.ataques }}</p>
-                {% endfor %}
+            <div class="field">
+                <label>PRONOMES</label>
+                <input type="text">
             </div>
-        </section>
-
-        <div class="break">
-            <span class="linha"></span>
-            <p>História</p>
-            <span class="linha"></span>
+            <div class="field">
+                <label>ESPECIALIDADE</label>
+                <input type="text">
+            </div>
         </div>
 
-        <section class="historia">
-            <div class="descContainer">
-                <p class="descTitulo">Criacão:</p>
-                <p>{{ feral.criacao }}</p>
+        <div class="stats-section">
+            <div class="stat-box">
+                <label>LIGEIRO</label>
+                <input type="text">
             </div>
-
-            <div class="descContainer">
-                <p class="descTitulo">Iniciação:</p>
-                <p>{{ feral.iniciacao }}</p>
+            <div class="stat-box">
+                <label>PODEROSO</label>
+                <input type="text">
             </div>
-
-            <div class="descContainer">
-                <p class="descTitulo">Ambição:</p>
-                <p>{{ feral.ambicao }}</p>
+            <div class="stat-box">
+                <label>PRECISO</label>
+                <input type="text">
             </div>
-
-            <div class="descContainer">
-                <p class="descTitulo">Conexão:</p>
-                <p>{{ feral.conexao }}</p>
+            <div class="stat-box">
+                <label>SAGAZ</label>
+                <input type="text">
             </div>
-        </section>
-
-        <div class="break">
-            <span class="linha"></span>
-            <p>Pontos / Habilidades</p>
-            <span class="linha"></span>
         </div>
 
-        <section class="pontos">
-            <p class="titulo">Estilos</p>
-            <div class="estiloContainer">
-                <div class="estilo">
-                    <p class="amarelo center">LIGEIRO</p>
-                    <p class="center">{{ feral.estilo.ligeiro }}</p>
+        <div class="abilities-section">
+            <h2>═══════ HABILIDADES ═══════</h2>
+            <div class="abilities-grid">
+                <div class="ability-item">
+                    <input type="checkbox" id="agarrar">
+                    <label for="agarrar">AGARRAR</label>
                 </div>
-                <div class="estilo">
-                    <p class="amarelo center">PODEROSO</p>
-                    <p class="center">{{ feral.estilo.poderoso }}</p>
+                <div class="ability-item">
+                    <input type="checkbox" id="atravessar">
+                    <label for="atravessar">ATRAVESSAR</label>
                 </div>
-                <div class="estilo">
-                    <p class="amarelo center">PRECISO</p>
-                    <p class="center">{{ feral.estilo.preciso }}</p>
+                <div class="ability-item">
+                    <input type="checkbox" id="estudar">
+                    <label for="estudar">ESTUDAR</label>
                 </div>
-                <div class="estilo">
-                    <p class="amarelo center">SAGAZ</p>
-                    <p class="center">{{ feral.estilo.sagaz }}</p>
+                <div class="ability-item">
+                    <input type="checkbox" id="armazenar">
+                    <label for="armazenar">ARMAZENAR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="buscar">
+                    <label for="buscar">BUSCAR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="exibir">
+                    <label for="exibir">EXIBIR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="assegurar">
+                    <label for="assegurar">ASSEGURAR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="chamar">
+                    <label for="chamar">CHAMAR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="golpear">
+                    <label for="golpear">GOLPEAR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="atirar">
+                    <label for="atirar">ATIRAR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="curar">
+                    <label for="curar">CURAR</label>
+                </div>
+                <div class="ability-item">
+                    <input type="checkbox" id="manufaturar">
+                    <label for="manufaturar">MANUFATURAR</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="middle-section">
+            <div class="utensils-section">
+                <h2>UTENSÍLIOS & TÉCNICAS</h2>
+                <div class="utensils-stats">
+                    <div>
+                        <label>VITALIDADE:</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>PARA MELHORAR</label>
+                        <div style="display: flex; gap: 5px;">
+                            <div style="flex: 1;">
+                                <label style="font-size: 10px;">ATUAL</label>
+                                <input type="text">
+                            </div>
+                            <div style="flex: 1;">
+                                <label style="font-size: 10px;">MÁX</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label style="font-size: 11px; font-weight: bold; margin-bottom: 5px; display: block;">ALCANCE:</label>
+                    <input type="text" style="width: 100%; margin-bottom: 10px; padding: 5px; border: 1px solid #333;">
+                </div>
+                <div class="utensils-list"></div>
+            </div>
+
+            <div class="traces-section">
+                <h2>TRAÇOS</h2>
+                <div class="trace-item">
+                    <strong>BRIO:</strong> (Curto: 1 Sucesso.) Aumenta (+) por 1.
+                </div>
+                <div class="trace-item">
+                    <strong>TINO:</strong> (Curto: 1 Sucesso.) Estabeleça um detalhe sobre a situação.
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <div class="vigor-section">
+                <h2>VIGOR</h2>
+                <div class="vigor-stats">
+                    <div>
+                        <label>ATUAL:</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label>MÁX:</label>
+                        <input type="text">
+                    </div>
                 </div>
             </div>
 
-            <p class="titulo">Habilidades</p>
-            <div class="habilidadesContainer">
-                <div class="habilidade">
-                    <p class="azul center">AGARRAR</p>
-                    <p class="center">{{ feral.habilidade.agarrar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">ATIRAR</p>
-                    <p class="center">{{ feral.habilidade.atirar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">CURAR</p>
-                    <p class="center">{{ feral.habilidade.curar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">GOLPEAR</p>
-                    <p class="center">{{ feral.habilidade.golpear }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">ARMAZENAR</p>
-                    <p class="center">{{ feral.habilidade.armazenar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">ATRAVESSAR</p>
-                    <p class="center">{{ feral.habilidade.atravessar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">ESTUDAR</p>
-                    <p class="center">{{ feral.habilidade.estudar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">MANUFATURAR</p>
-                    <p class="center">{{ feral.habilidade.manufaturar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">ASSEGURAR</p>
-                    <p class="center">{{ feral.habilidade.assegurar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">CHAMAR</p>
-                    <p class="center">{{ feral.habilidade.chamar }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">EXIBIR</p>
-                    <p class="center">{{ feral.habilidade.exibir }}</p>
-                </div>
-                <div class="habilidade">
-                    <p class="azul center">PROCURAR</p>
-                    <p class="center">{{ feral.habilidade.procurar }}</p>
-                </div>
+            <div class="conditions-section">
+                <h2>CONDIÇÕES</h2>
+                <div class="conditions-list"></div>
             </div>
-
-            <p class="titulo">Traços</p>
-            <p class="traco">
-                <span class="verde maiusculo">{{ feral.tracos[0].nome }}</span> {{ feral.tracos[0].custo }} {{ feral.tracos[0].descricao }} 
-                <span class="azul maiusculo">{{ feral.tracos[0].habilidade_relacionada }}</span> <span class="amarelo maiusculo">{{ feral.tracos[0].estilo_relacionado }}</span>
-            </p>
-            <p class="traco">
-                <span class="verde maiusculo">{{ feral.tracos[1].nome }}</span> {{ feral.tracos[1].custo }} {{ feral.tracos[1].descricao }} 
-                <span class="azul maiusculo">{{ feral.tracos[1].habilidade_relacionada }}</span> <span class="amarelo maiusculo">{{ feral.tracos[1].estilo_relacionado }}</span>
-            </p>
-            <p class="traco">
-                <span class="verde maiusculo">{{ feral.tracos[2].nome }}</span> {{ feral.tracos[2].custo }} {{ feral.tracos[2].descricao }} 
-                <span class="azul maiusculo">{{ feral.tracos[2].habilidade_relacionada }}</span> <span class="amarelo maiusculo">{{ feral.tracos[2].estilo_relacionado }}</span>
-            </p>
-        </section>
-    </main>
+        </div>
+    </div>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
+</main>
 {% endblock %}
