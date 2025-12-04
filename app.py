@@ -1,6 +1,5 @@
-from flask import render_template, redirect, url_for, request, flash, make_response
-from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import render_template, redirect, url_for, request
+from flask_login import LoginManager, login_required, current_user
 from werkzeug.utils import secure_filename
 from database import *
 from inserts import *
@@ -38,63 +37,6 @@ def home():
     ferais = Feral.query.limit(2).all()
     monstro = Monstro.query.limit(2).all()
     return render_template('home.html', listagem=ferais, listagem2=monstro)
-
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == 'POST':
-        nome = request.form.get('nome')
-        email = request.form.get('email')
-        senha = request.form.get('senha')
-
-        validar_user = db.session.execute(db.select(User).filter_by(email=email)).scalar()
-        if not validar_user:
-            user = User(nome=nome, email=email, senha_hash=generate_password_hash(senha))
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
-            return redirect(url_for('home'))
-        
-        flash('ERRO 403! Este usuário já existe.', category='error')
-        return redirect(url_for('register'))
-    return render_template("cadastro.html")
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        senha = request.form.get('senha')
-
-        validar_user = db.session.execute(db.select(User).filter_by(email=email)).scalar()
-        if not validar_user:
-            flash('ERRO 404! Usuário não cadastrado', category='error')
-            return redirect(url_for('login'))
-
-        if validar_user and check_password_hash(validar_user.senha_hash, senha):
-            login_user(validar_user)
-            return redirect(url_for('home'))
-        
-        flash('ERRO 401! Verifique sua senha e tente novamente', category='error')
-        return redirect(url_for('login'))
-    return render_template("login.html")
-
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
-
-
-@app.route('/fichas')
-@login_required
-def fichas():
-    if current_user.is_authenticated:
-        filtro = Feral.query.filter_by(player=current_user.nome).all()
-        print(filtro)
-        listagem = Feral.query.all()
-        return render_template('fichas.html', listagem=listagem, filtro=filtro)
     
 
 @app.route('/dados')
