@@ -1,9 +1,8 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import login_required
-from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from models.database import db
+from models.user import User
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -24,7 +23,7 @@ def register():
             return redirect(url_for('home'))
         
         flash('ERRO 403! Este usuário já existe.', category='error')
-        return redirect(url_for('register'))
+        return redirect(url_for('admin.register'))
     return render_template("cadastro.html")
 
 
@@ -37,14 +36,14 @@ def login():
         validar_user = db.session.execute(db.select(User).filter_by(email=email)).scalar()
         if not validar_user:
             flash('ERRO 404! Usuário não cadastrado', category='error')
-            return redirect(url_for('login'))
+            return redirect(url_for('admin.login'))
 
         if validar_user and check_password_hash(validar_user.senha_hash, senha):
             login_user(validar_user)
             return redirect(url_for('home'))
         
         flash('ERRO 401! Verifique sua senha e tente novamente', category='error')
-        return redirect(url_for('login'))
+        return redirect(url_for('admin.login'))
     return render_template("login.html")
 
 
