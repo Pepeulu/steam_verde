@@ -68,10 +68,10 @@
                                 <div class="utensilio">
                                     <p>Utensílio</p>
                                     <p>{{listagem.utensilios[0].nome}}</p>
-                                    <a href="{{ url_for('detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
+                                    <a href="{{ url_for('feral.detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
                                     {% if listagem.player == current_user.nome %}
-                                            <a href="{{ url_for('edit_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Editar Ficha</a>
-                                            <a href="{{ url_for('delete_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Deletar Ficha</a>
+                                            <a href="{{ url_for('feral.edit_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Editar Ficha</a>
+                                            <a href="{{ url_for('feral.delete_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Deletar Ficha</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                 
 
                 <div class="criarcontainer">
-                    <a href="{{ url_for('create_feral') }}" class="criar center">Criar Personagem</a>
+                    <a href="{{ url_for('feral.create_feral') }}" class="criar center">Criar Personagem</a>
                 </div>
             </section>
         </section>

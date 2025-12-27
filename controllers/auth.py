@@ -24,7 +24,7 @@ def register():
         
         flash('ERRO 403! Este usuário já existe.', category='error')
         return redirect(url_for('admin.register'))
-    return render_template("cadastro.html")
+    return render_template("auth/cadastro.html")
 
 
 @admin_bp.route("/login", methods=["GET", "POST"])
@@ -44,7 +44,7 @@ def login():
         
         flash('ERRO 401! Verifique sua senha e tente novamente', category='error')
         return redirect(url_for('admin.login'))
-    return render_template("login.html")
+    return render_template("auth/login.html")
 
 
 @admin_bp.route('/logout')

@@ -5,11 +5,11 @@
         </a>
         <div class="links">
             <a href="{{ url_for('dados') }}">Dados</a>
-            <a href="{{ url_for('fichas') }}">Fichas</a>
-            <a href="{{ url_for('bestiario') }}">Bestiário</a>
+            <a href="{{ url_for('feral.fichas') }}">Fichas</a>
+            <a href="{{ url_for('bestiario.bestiario') }}">Bestiário</a>
             <a>Mestre</a>
             <div class="perfil-container">
-                <button id="perfil-btn" class="perfil" data-logout-url="{{ url_for('logout') }}">
+                <button id="perfil-btn" class="perfil" data-logout-url="{{ url_for('admin.logout') }}">
                     {{ current_user.nome }}
                 </button>
 

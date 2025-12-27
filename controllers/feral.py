@@ -19,7 +19,7 @@ def fichas():
     if current_user.is_authenticated:
         filtro = Feral.query.filter_by(player=current_user.nome).all()
         listagem = Feral.query.all()
-        return render_template('fichas.html', listagem=listagem, filtro=filtro)
+        return render_template('feral/fichas.html', listagem=listagem, filtro=filtro)
 
 
 @feral_bp.route('/create', methods=['GET', 'POST'])
@@ -176,14 +176,14 @@ def create_feral():
             db.session.add(feral)
             db.session.commit()
             return redirect(url_for('feral.fichas'))
-    return render_template('create_feral.html', condicoes=condicoes_existentes)
+    return render_template('feral/create_feral.html', condicoes=condicoes_existentes)
 
 
 @feral_bp.route('/detail/<int:id_feral>')
 @login_required
 def detail_feral(id_feral):
     feral = Feral.query.filter_by(id=id_feral).first()
-    return render_template('fichapersonagem.html', feral=feral)
+    return render_template('feral/fichapersonagem.html', feral=feral)
 
 
 @feral_bp.route('/edit/<int:id_feral>', methods=['GET', 'POST'])
@@ -204,7 +204,7 @@ def edit_feral(id_feral):
 
             db.session.commit()
             return redirect(url_for('feral.fichas'))
-    return render_template('edit_feral.html', feral=feral)
+    return render_template('feral/edit_feral.html', feral=feral)
 
 
 @feral_bp.route('/delete/<int:id_feral>', methods=['GET', 'POST'])

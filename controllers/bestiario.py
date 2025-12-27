@@ -10,7 +10,7 @@ bestiario_bp = Blueprint('bestiario', __name__, url_prefix='/bestiario')
 @bestiario_bp.route('/')
 def bestiario():
     monstros = Monstro.query.all()
-    return render_template('bestiario.html', listagem=monstros)
+    return render_template('bestiario/bestiario.html', listagem=monstros)
 
 
 @bestiario_bp.route('/create', methods=['POST', 'GET'])
@@ -49,13 +49,13 @@ def bestiario_create():
         db.session.commit()
 
         return redirect(url_for('bestiario.bestiario'))
-    return render_template("createbestiario.html")
+    return render_template("bestiario/createbestiario.html")
 
 
 @bestiario_bp.route('/detail/<int:id_besta>')
 def bestiario_detail(id_besta):
     besta = Monstro.query.filter_by(id=id_besta).first()
-    return render_template('ficha_bestiario.html', besta=besta)
+    return render_template('bestiario/ficha_bestiario.html', besta=besta)
 
 
 @bestiario_bp.route('/edit/<int:id>', methods=['GET', 'POST'])
@@ -73,7 +73,7 @@ def bestiario_edit(id):
 
             db.session.commit()
             return redirect(url_for('bestiario.bestiario'))
-    return render_template('edit_monstro.html', monstro=monstro)
+    return render_template('bestiario/edit_monstro.html', monstro=monstro)
 
 
 @bestiario_bp.route('/delete/<int:id>', methods=['GET', 'POST'])

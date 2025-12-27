@@ -13,7 +13,7 @@
         <section class="criar">
             <p class="title">Criar ficha</p>
             <p class="sub">Crie aqui a ficha do seu personagem</p>
-            <a href="{{ url_for('create_feral') }}" class="bestabtn center">Criar</a>
+            <a href="{{ url_for('feral.create_feral') }}" class="bestabtn center">Criar</a>
         </section>
 
         <section class="fichascontainer">
@@ -76,7 +76,7 @@
                                 <div class="utensilio">
                                     <p>Utensílio</p>
                                     <p>{{listagem.utensilios[0].nome}}</p>
-                                    <a href="{{ url_for('detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
+                                    <a href="{{ url_for('feral.detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                 {% else %}
                     <h1>Ainda não há fichas</h1>
                 {% endif %}
-                <a href="{{ url_for('fichas') }}" class="acessar center">Acessar restante</a>
+                <a href="{{ url_for('feral.fichas') }}" class="acessar center">Acessar restante</a>
             </section>
         </section>
 
@@ -103,7 +103,7 @@
                 {% endfor %}
                 <div class="besta" id="bestadesc">
                     <p>Para ter acesso ao bestiário completo, seja redirecionado para a página clicando no botão</p>
-                    <a href="{{ url_for('bestiario') }}" class="bestabtn center">Clique aqui</a>
+                    <a href="{{ url_for('bestiario.bestiario') }}" class="bestabtn center">Clique aqui</a>
                 </div>
             </div>  
         </section>

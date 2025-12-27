@@ -19,13 +19,13 @@
                             <img src="{{ url_for('static', filename='uploads/' + monstro.imagem_url) }}" alt="">
                             <p>{{ monstro.nome }}</p>
                             <p class="sub">{{ monstro.descricao }}</p>
-                            <a href="{{ url_for('bestiario_detail', id_besta = monstro.id) }}" class="efeito btn">Acessar ficha completa</a>
+                            <a href="{{ url_for('bestiario.bestiario_detail', id_besta = monstro.id) }}" class="efeito btn">Acessar ficha completa</a>
                         </div>
                     {% endfor %}
                 {% endif %}
                 
 
-                <a href="{{ url_for('bestiario_create') }}"><button class="efeito">Adicionar nova besta</button></a>
+                <a href="{{ url_for('bestiario.bestiario_create') }}"><button class="efeito">Adicionar nova besta</button></a>
             </div>
         </section>
     </main>

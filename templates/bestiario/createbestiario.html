@@ -11,7 +11,7 @@
 <main>
     <h1>Cadastro da Besta</h1>
 
-    <form action="{{ url_for('bestiario_create') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url_for('bestiario.bestiario_create') }}" method="POST" enctype="multipart/form-data">
         
         <label>Nome:</label><br>
         <input type="text" name="nome" required><br><br>

@@ -81,5 +81,5 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         criar_condicoes_padrao()
-        criar_personagens_exemplo()
+        # criar_personagens_exemplo()
     app.run(debug=True)

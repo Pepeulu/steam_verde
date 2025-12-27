@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Faça login na sua conta!</h1>
         <div class="forms">
-            <form action="{{ url_for('login') }}" method="post">
+            <form action="{{ url_for('admin.login') }}" method="post">
                 <label for="nome">Digite seu nome</label>
                 <input type="text" name="nome" placeholder="Usuário" required>
 
@@ -24,7 +24,7 @@
                 <input type="password" name="senha" placeholder="****" required>
 
                 <button type="submit">Entrar</button>
-                <button><a href="{{ url_for('register') }}"> Fazer Cadastro</a></button>
+                <button><a href="{{ url_for('admin.register') }}"> Fazer Cadastro</a></button>
             </form>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
