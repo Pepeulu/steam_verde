@@ -1,84 +1,51 @@
-# WilderFeast
-Esse projeto WilderFeast busca otimizar a jogabilidade do rpg de mesa com várias funções auxiliares como registro de personagens, registro de feras, dados digitais e diversas outras funcionalidades que com certeza facilitarão as operações dentro do jogo. A aplicação utiliza diversas tecnologias, mas as principais são o flask que é um microframework que trabalhará em conjunto com o banco de dados sqlalchemy que tem a função de organizar os dados, python para estabelecer a lógica de programação, css e html para organizar a estilização e estruturação do site respectivamente e javascript para estabelecer funções que serão executadas dentro do html.
+# Wilderfeast 2.0
 
+Repaginação completa do projeto Wilderfeast: backend migrado de Flask/Jinja
+para **FastAPI** (API REST + JWT) e frontend migrado para **Next.js**
+(App Router, TypeScript, Tailwind), com uma identidade visual nova inspirada
+em Monster Hunter e diários de caçador de RPGs online.
 
----
-
-# Principais funcionalidades
-1. Sistema de login, logout e registro do usuário
-2. Sistema de cadastro, edição, remoção e exibição de fichas de personagens e feras
-3. Grande variedade de dados para rolagem
-
----
-
-# Como acessar o site
-1. Clonar o repositório github
-para clonar o repositório github use o seguinte comando dentro do terminal
-```bash
-git clone https://github.com/Dargoes/steam_verde.git
 ```
-2. mudar para o repositório
-```bash
-cd steam_verde
+wilderfeast/
+  backend/     # API FastAPI — veja backend/README.md
+  frontend/    # Web Next.js — veja frontend/README.md
 ```
-3. instalar bibliotecas do projeto e outros requerimentos
+
+## Rodando o projeto completo
+
+Terminal 1 — API:
 ```bash
+cd backend
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
 ```
-4. inicializar o arquivo python
+
+Terminal 2 — Web:
 ```bash
-py app.py
+cd frontend
+npm install
+cp .env.local.example .env.local
+npm run dev
 ```
----
 
-# Tecnologias Utilizadas
-- Flask
-- Flask-Login
-- Flask-SQLAlchemy
-- SQLAlchemy
-- Werkzeug
+Acesse `http://localhost:3000`.
 
----
+## O que mudou em relação à v1 (Flask/Jinja)
 
-# Estruturação do site
-## 1. Página inicial
-
-![alt text](referencias_readme/Pagina_inicial.png)
-
-A página inicial apresenta links que referenciam as rotas de registro e de login que cadastram os dados do usuário no banco e consultam os dados respectivamente.
-
-## 2. Página do usuário
-
-![Pagina_usuario](referencias_readme/Pagina_usuario.png)
-![Pagina_usuario](referencias_readme/Pagina_usuario2.png)
-
-
-A página do usuário é retornada logo após o login e funciona como uma ponte para as outras páginas do projeto que são dados, fichas e bestiário. Além disso ela também consta com o logout do usuário e sessões de criar ficha de personagem, fichas já criadas e uma fração do bestiário e dos personagens
-
-## 3. fichas de personagem
-
-![Ficha_personagem](referencias_readme/Ficha_personagem2.png)
-
-
-Através das respostas dadas nos formulários de criação de personagens as rotas do python guardam as informações no banco de dados e mostram os personagens de forma organizada dentro da página.
-
-## 4. bestiário
-
-![Bestario](referencias_readme/Bestiario1.png)
-
-
-De forma semelhante a página de personagens, o bestiário exibe as bestas já cadastradas os respectivos atributos de cada fera.
-
-## 5. dados
-
-![dados](referencias_readme/dados.png)
-![dados](referencias_readme/dados2.png)
-
-Com o javascript é possível criar funções que fazem uma rolagem de dados de diversos tipos de forma aleatória, muito semelhante à vida real.
-
-
-## Páginas de registro
-
-![Ficha_besta](referencias_readme/Ficha_besta.png)
-![Ficha_personagem](referencias_readme/Ficha_personagem1.png)
-Estas são as páginas em que o usuário pode colocar cada dado do seu personagem ou fera e submeter ao registro para ser exibida posteriormente na página do usuário e fichas, caso seja um personagem ou bestiário, caso seja uma fera.
+- **Backend**: rotas Flask → endpoints FastAPI documentados automaticamente
+  (`/docs`), sessões de cookie → JWT, SQLAlchemy síncrono → assíncrono
+  (`aiosqlite`), upload de imagem mantido (agora em `static/uploads`, servido
+  via `/static/uploads/...`).
+- **Frontend**: templates Jinja → páginas/rotas Next.js, JS solto → componentes
+  React tipados, CSS solto → Tailwind com um design system próprio
+  (`app/globals.css`).
+- **Estrutura de domínio preservada**: Feral (personagem), Estilo, Habilidade,
+  Utensílio, Traço, Condição e Monstro (bestiário) continuam os mesmos
+  conceitos do sistema Wilderfeast, agora com contratos de dados explícitos
+  (Pydantic no backend, TypeScript no frontend).
+- **Requisitos funcionais originais** (`documents/Requisitos_Funcionais.md`):
+  autenticação (RF01), integração com banco (RF02), edição/remoção de
+  conteúdo próprio (RF03/RF04), acesso público a fichas e bestiário
+  (RF05/RF06), design intuitivo (RF07), rotas RESTful (RF09), senha
+  criptografada (RF10) e logout (RF12) seguem todos contemplados.
